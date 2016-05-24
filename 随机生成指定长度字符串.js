@@ -1,9 +1,7 @@
 
-/**
- *@param {string} _string 传入指定范围的的字符串
- *@param {number} mount   指定生成字符串的长度
- */
-  
+@param {string} _string 传入指定范围的的字符串
+@param {number} mount   指定生成字符串的长度
+ 
 function randomString(_string, mount) {
     var _newString = '';
 
