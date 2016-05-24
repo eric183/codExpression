@@ -8,8 +8,8 @@ Array.prototype.unique = function() {
 
     for (var i = 0; i < this.length; i++) {
         if (!_hash[this[i]]) {
-            _this[i].push(_array);
-            _this[i] = true;
+            _array.push(this[i]);
+            this[i] = true;
         }
     }
 
