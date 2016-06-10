@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+    </div>
+    <script>
+
+    /*
+      简单用原生js实现了下mvvm，es6写起来还是很爽的，尤其是字符串模板，虽然看起来乱七八糟，稍后整理吧。
+     */
+    
+    var wrap = document.querySelector('.container');
+
+    //model
+
+    let str = {
+        hey: 'helloworld',
+        fns: [],
+        render: function() {
+            this.fns.forEach(function(fn) {
+                fn.call(str, str.value);
+            })
+        },
+        on: function(fn) {
+            this.fns.push(fn)
+        }
+    };
+
+    //view 
+
+    var tml = `<input type="text" class="my_input"><p class="show_data">${str.hey}</p>`;
+
+    wrap.innerHTML = tml;
+
+    //viewmodel
+
+    var input = document.querySelector('.my_input');
+    var _p = document.querySelector('.show_data');
+
+    Object.defineProperty(str, 'value', {
+        get: function() {
+            return input.value
+        }
+    });
+
+    input.addEventListener('keyup', function() {
+        str.render();
+    }, false);
+
+    str.on(function(value) {
+        _p.innerHTML = value
+    });
+    </script>
+</body>
+
+</html>
